@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*
+{
+    font-family: "Roboto", sans-serif;
+}
+
+header
+{
+    background-color: #212529;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.tigerButton
+{
+    background-color: #f76902;
+    text-align: center;
+    color: white;
+    font-size: 48px;
+    margin: 16px;
+    padding: 16px;
+    border-radius: 32px;
+    font-weight: 700;
+}
+
+h1
+{
+    padding: 32px;
+    font-weight: 100;
+    font-style: normal;
+}
