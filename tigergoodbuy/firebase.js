@@ -57,10 +57,10 @@ export function getPostById(postId)
     return get(postRef)
       .then(snapshot => {
         if (snapshot.exists()) {
-          console.log("Post data:", snapshot.val());
+          //console.log("Post data:", snapshot.val());
           return snapshot.val();
         } else {
-          console.log("No post found with the given ID.");
+          console.error("No post found with the given ID.");
           return null;
         }
       })

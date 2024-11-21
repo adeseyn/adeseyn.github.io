@@ -4,26 +4,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>Tiger Goodbuy - Home</title>
+    <title>Tiger Goodbuy - New Post</title>
 </head>
 <body>
     <header>
-        <button class="tigerButton" id="logoButton">Tiger Goodbuy</button>
+        <a href="../home"><button class="tigerButton" id="logoButton">Tiger Goodbuy</button></a>
         <button class="tigerButton" id="cartButton">Cart</button>
         <button class="tigerButton" id="logOutButton">Log Out</button>
     </header>
 
-    <h1>For You</h1>
-    <div class="miniPostList" id="forYouPosts">
+    <h1 id="nameText">Post</h1>
+    <div id="newPostFormDiv">
+        <div id="newPostLeft">
+            <img id="newPostImg">
+            <p id="priceText"></p>
+        </div>
 
-    </div>
-    <h1>New Items</h1>
-    <div class="miniPostList" id="newItemsPosts">
-
+        <div id="newPostRight">
+            <p id="sellerText">[Seller Name]</p>
+            <p id="descText"></p>
+        </div>
     </div>
 
     <footer>
@@ -34,6 +38,6 @@
         <button class="tigerButton">Profile & Stats</button>
     </footer>
 
-    <script src="loadPosts.js" type="module"></script>
+    <script src="getBigPost.js" type="module"></script>
 </body>
 </html>

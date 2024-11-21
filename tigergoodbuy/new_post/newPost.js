@@ -6,7 +6,6 @@ const newPostImage = document.getElementById("newPostImg");
 const nameText = document.getElementById("nameInput");
 const descText = document.getElementById("descInput");
 const imageLinkText = document.getElementById("imageLink");
-const submitButton = document.getElementById("newPostSubmit");
 
 imageLinkText.addEventListener('input', (event) =>
 {

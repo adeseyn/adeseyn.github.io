@@ -123,6 +123,14 @@ footer
     background-color: lightgray;
 }
 
+#newPostFormDiv p
+{
+    width: 100%;
+    font-size: 32px;
+    padding: 8px;
+    margin: 16px;
+}
+
 #newPostFormDiv img
 {
     width: 100%;
