@@ -4,11 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>Tiger Goodbuy - Home</title>
+    <title>Tiger Goodbuy - New Post</title>
 </head>
 <body>
     <header>
@@ -17,14 +17,13 @@
         <button class="tigerButton" id="logOutButton">Log Out</button>
     </header>
 
-    <h1>For You</h1>
-    <div class="miniPostList" id="forYouPosts">
-
-    </div>
-    <h1>New Items</h1>
-    <div class="miniPostList" id="newItemsPosts">
-
-    </div>
+    <h1>New Post</h1>
+    <form id="newPostForm">
+        <img id="newPostImg">
+        <input type="number" min="0" step="0.01" id="price" required><br>
+        <input type="text" id="name" required><br>
+        <input type="text" id="desc" required><br>
+    </form>
 
     <footer>
         <button class="tigerButton">Home</button>
