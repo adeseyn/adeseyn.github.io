@@ -15,7 +15,7 @@ const firebaseConfig =
 const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app);
 
-export function publishPost(name, imageUrl, postDate, userId)
+export function publishPost(name, imageUrl, postDate, desc, price, userId)
 {
     const postsRef = ref(db, "posts");
     
@@ -25,11 +25,13 @@ export function publishPost(name, imageUrl, postDate, userId)
   
     // Create the post data
     const postData = {
-      id: postId,
-      name: name,
-      image: imageUrl,
-      date: postDate,
-      user: userId
+		id: postId,
+		name: name,
+		image: imageUrl,
+		date: postDate,
+		user: userId,
+		desc: desc,
+		price: price
     };
   
     // Check if the ID exists (this should rarely happen due to `push`)

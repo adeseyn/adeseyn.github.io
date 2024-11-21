@@ -26,4 +26,4 @@ function getNewPosts(postNumber)
     });
 }
 
-getNewPosts(4);
+getNewPosts(10);

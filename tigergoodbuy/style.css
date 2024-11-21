@@ -38,6 +38,7 @@ h1
 {
     padding: 32px;
     display: flex;
+    overflow: scroll;
 }
 
 .miniPost
@@ -54,6 +55,7 @@ h1
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
 }
 
 .miniPost:hover
@@ -64,7 +66,8 @@ h1
 
 .miniPostImage
 {
-    object-fit: cover;
+    height: 0px;
+    object-fit: contain;
     flex: 1;
 }
 
@@ -83,4 +86,71 @@ footer
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+}
+
+#newPostFormDiv
+{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 32px;
+}
+
+#newPostFormDiv div
+{
+    display: flex;
+    flex-direction: column;
+}
+
+#newPostFormDiv input
+{
+    width: 100%;
+    font-size: 32px;
+    padding: 8px;
+    margin: 16px;
+    border-color: darkgray;
+    background-color: lightgray;
+}
+
+#newPostFormDiv textarea
+{
+    width: 100%;
+    font-size: 32px;
+    padding: 8px;
+    margin: 16px;
+    border-color: darkgray;
+    background-color: lightgray;
+}
+
+#newPostFormDiv img
+{
+    width: 100%;
+    padding: 8px;
+    margin: 16px;
+    object-fit: cover;
+    flex: 1;
+}
+
+::placeholder
+{
+    color: black;
+    opacity: 1; /* Firefox */
+    font-weight: 200;
+}
+
+#newPostLeft
+{
+    width: 20%;
+}
+
+#newPostRight
+{
+    width: 70%;
+}
+
+#newPostSubmit
+{
+    margin: 0 auto;
+    display: block;
 }
