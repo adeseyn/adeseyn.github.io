@@ -139,3 +139,65 @@ export function getUserPosts(userId) {
 	})
 	.catch(error => console.error("Error fetching user posts:", error));
 }
+
+export async function searchPosts(query, marginOfError = 0.4)
+{
+    const postsRef = ref(db, "posts");
+  
+    // Fetch all posts from the database
+    try {
+        const snapshot = await get(postsRef);
+        if (!snapshot.exists())
+        {
+            console.log("No posts found.");
+            return [];
+        }
+
+        const posts = [];
+        snapshot.forEach(childSnapshot => {
+            posts.push(childSnapshot.val());
+        });
+
+        // Configure Fuse.js for fuzzy search
+        const fuse = new Fuse(posts, {
+            keys: ["name", "description"], // Fields to search
+            threshold: marginOfError       // Margin of error (lower means stricter matching)
+        });
+
+        // Perform search
+        const results = fuse.search(query);
+
+        // Extract and return the matched items
+        return results.map(result => result.item);
+    } catch (error) {
+        console.error("Error searching posts:", error);
+        return [];
+    }
+}
+
+export async function getRandomPosts(count)
+{
+	const postsRef = ref(db, "posts");
+
+	try {
+		const snapshot = await get(postsRef);
+		if (!snapshot.exists())
+			{
+			console.log("No posts found.");
+			return [];
+		}
+
+		// Get all posts
+		const allPosts = [];
+		snapshot.forEach(childSnapshot => {
+		allPosts.push(childSnapshot.val());
+		});
+
+		// Shuffle and select random posts
+		const shuffledPosts = allPosts.sort(() => Math.random() - 0.5);
+		return shuffledPosts.slice(0, count);
+	} catch (error) {
+		console.error("Error fetching random posts:", error);
+		return [];
+	}
+}

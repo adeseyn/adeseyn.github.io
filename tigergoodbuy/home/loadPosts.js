@@ -1,20 +1,36 @@
-import { getRecentPosts } from "../firebase.js";
+import { getRecentPosts, getRandomPosts } from "../firebase.js";
 import { Post, addMiniPostToDiv } from "../post.js"
 
-const forYouPostDiv = document.getElementById("forYouPosts");
-const newPostsDiv = document.getElementById("newItemsPosts");
+document.addEventListener('DOMContentLoaded', () => {
+    const forYouPostDiv = document.getElementById("forYouPosts");
+    const newPostsDiv = document.getElementById("newItemsPosts");
 
-function getNewPosts(postNumber)
-{
-    getRecentPosts(postNumber).then(posts => 
+    function getYouPosts(postNumber)
     {
-        posts.forEach(post =>
+        getRandomPosts(postNumber).then(posts => 
         {
-            let realPost = new Post(post);
-            
-            addMiniPostToDiv(newPostsDiv, realPost);
+            posts.forEach(post =>
+            {
+                let realPost = new Post(post);
+                
+                addMiniPostToDiv(forYouPostDiv, realPost);
+            });
         });
-    });
-}
+    }
 
-getNewPosts(10);
+    function getNewPosts(postNumber)
+    {
+        getRecentPosts(postNumber).then(posts => 
+        {
+            posts.forEach(post =>
+            {
+                let realPost = new Post(post);
+                
+                addMiniPostToDiv(newPostsDiv, realPost);
+            });
+        });
+    }
+
+    getYouPosts(10);
+    getNewPosts(10);
+});

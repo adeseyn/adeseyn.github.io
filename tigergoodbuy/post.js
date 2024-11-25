@@ -12,7 +12,7 @@ export class Post
     {
         this.name = obj.name;
         this.image = obj.image;
-        this.date = obj.date;
+        this.date = new Date(obj.date);
 
         if ("id" in obj) this.postId = obj.id;
         else this.postId = -1;
@@ -48,6 +48,37 @@ export function addMiniPostToDiv(div = HTMLDivElement, post = Post)
     postName.classList = ["miniPostName"];
     postName.innerHTML = post.name;
     postDiv.append(postName);
+
+    div.append(postDiv);
+}
+
+export function addLongPostToDiv(div = HTMLDivElement, post = Post)
+{
+    const postDiv = document.createElement("div");
+    postDiv.classList = ["longPost"];
+    postDiv.addEventListener("click", (e) => {
+        //console.log(post.postId);
+        redirectWithId("../post/index.html", post.postId);
+    })
+
+    const postImage = document.createElement("img");
+    postImage.classList = ["longPostImage"];
+    postImage.src = post.image;
+    postDiv.append(postImage);
+
+    const textDiv = document.createElement("div");
+    textDiv.classList = ["longPostText"];
+    postDiv.append(textDiv);
+
+    const postName = document.createElement("p");
+    postName.classList = ["longPostName"];
+    postName.innerHTML = post.name;
+    textDiv.append(postName);
+
+    const postDesc = document.createElement("p");
+    postDesc.classList = ["longPostDesc"];
+    postDesc.innerHTML = post.desc;
+    textDiv.append(postDesc);
 
     div.append(postDiv);
 }
