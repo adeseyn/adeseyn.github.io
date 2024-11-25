@@ -35,7 +35,6 @@ export function addMiniPostToDiv(div = HTMLDivElement, post = Post)
     const postDiv = document.createElement("div");
     postDiv.classList = ["miniPost"];
     postDiv.addEventListener("click", (e) => {
-        //console.log(post.postId);
         redirectWithId("../post/index.html", post.postId);
     })
 

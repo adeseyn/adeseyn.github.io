@@ -11,18 +11,12 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-    <title>Tiger Goodbuy - Search</title>
+    <title>Tiger Goodbuy - New Post</title>
 </head>
 <body>
     <header>
         <div class="headerLeft">
-            <form id="searchForm">
-                <div class="tigerButton">
-                    <button type="submit"><img src="../img/search.png"></button>
-                    <input type="text" id="searchQuery" value="" placeholder="Search">
-                </div>
-            </form>
+            <a href="../home"><button class="tigerButton" id="logoButton">Tiger Goodbuy</button></a>
         </div>
 
         <div class="headerRight">
@@ -31,20 +25,19 @@
         </div>
     </header>
 
-    <h1>Best Results</h1>
+    <h1>All Posts</h1>
+    <div id="allPosts">
 
-    <div id="postResults">
     </div>
 
     <footer>
         <a href="../home"><button class="tigerButton">Home</button></a>
-        <a href="../search"><button class="tigerButton tigerButtonSelected">Search</button></a>
+        <a href="../search"><button class="tigerButton">Search</button></a>
         <a><button class="tigerButton tigerNotWorking">Message</button></a>
         <a href="../new_post"><button class="tigerButton">Post & Edit</button></a>
         <a><button class="tigerButton tigerNotWorking">Profile & Stats</button></a>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
-    <script src="search.js" type="module"></script>
+    <script src="getAllPosts.js" type="module"></script>
 </body>
 </html>

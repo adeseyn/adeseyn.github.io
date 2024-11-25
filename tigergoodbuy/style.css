@@ -78,6 +78,19 @@ header .tigerButton:nth-child(3)
     color: #f76902;
 }
 
+.tigerNotWorking
+{
+    background-color: gray;
+}
+
+.tigerNotWorking:hover
+{
+    background-color: gray;
+    color: white;
+    scale: 100%;
+    cursor: not-allowed;
+}
+
 h1
 {
     font-family: "Roboto", sans-serif;
@@ -132,6 +145,12 @@ h1
     font-weight: 900;
 }
 
+.miniPost h1
+{
+    text-align: center;
+    margin: auto;
+}
+
 footer
 {
     background-color: #212529;
@@ -146,12 +165,19 @@ footer
     align-items: center;
 }
 
-footer .tigerButton
+footer a
 {
     flex-grow: 1;
+    margin: 16px;
+}
+
+footer .tigerButton
+{
+    width: 100%;
     text-align: center;
     text-wrap: nowrap;
     overflow: hidden;
+    margin: auto;
 }
 
 #newPostFormDiv
@@ -281,6 +307,7 @@ footer .tigerButton
     font-size: 32px;
     padding: 0px auto;
     margin: 0px auto;
+    text-wrap: nowrap;
 }
 
 .longPostDesc
@@ -290,6 +317,7 @@ footer .tigerButton
     background-color: #fff;
     font-weight: 500;
     font-size: 16px;
+    text-wrap: nowrap;
 }
 
 .headerRight
@@ -315,21 +343,33 @@ footer .tigerButton
     width: 100%;
 }
 
-@media only screen and (max-width: 1000px)
+#allPosts
 {
-    header
-    {
-        flex-direction: column;
-    }
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
 
+@media only screen and (max-width: 1575px)
+{
     footer
     {
         flex-direction: column;
     }
 
-    footer .tigerButton
+    footer a
     {
         flex-grow: none;
+    }
+}
+
+@media only screen and (max-width: 1000px)
+{
+    header
+    {
+        flex-direction: column;
     }
 
     #newPostFormDiv
@@ -350,5 +390,24 @@ footer .tigerButton
     #sellerText, #dateText, #priceText
     {
         text-align: center;
+    }
+}
+
+@media only screen and (max-width: 600px)
+{
+    .longPost
+    {
+        height: 128px;
+    }
+
+    .longPostImage
+    {
+        width: 128px;
+    }
+
+    .longPostName
+    {
+        font-size: 24px;
+        padding-bottom: 0;
     }
 }

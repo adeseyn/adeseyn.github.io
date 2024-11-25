@@ -28,9 +28,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 addMiniPostToDiv(newPostsDiv, realPost);
             });
+        })
+        .then(function ()
+        {
+            const seeAllDiv = document.createElement("div");
+            seeAllDiv.classList = ["miniPost"];
+            seeAllDiv.addEventListener("click", (e) => {
+                window.location.href = "../all_posts";
+            });
+            newPostsDiv.append(seeAllDiv);
+
+            const seeAllHeader = document.createElement("h1");
+            seeAllHeader.innerHTML = "See All >";
+            seeAllDiv.append(seeAllHeader);
         });
     }
 
     getYouPosts(10);
-    getNewPosts(10);
+    getNewPosts(9);
 });
