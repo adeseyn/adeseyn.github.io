@@ -1,56 +1,60 @@
 import { searchPosts } from "../firebase.js"
 import { Post, addLongPostToDiv } from "../post.js"
 
+// searches for posts and adds them to the postResults div
+// while looking for posts, put a loading message
+// if no posts are found, put a no posts found message
 async function loadPosts(query)
 {
-    const postsContainer = document.getElementById('postResults');
-    postsContainer.innerHTML = '<h1>Loading...</h1>';
+    const postsContainer = document.getElementById("postResults");
+    postsContainer.innerHTML = "<h1>Loading...</h1>";
 
-    // Simulate fetching posts based on the query
     try
     {
-        // Call your searchPosts function here
-        const results = await searchPosts(query, 0.4); // Assuming you have a searchPosts function defined
-        postsContainer.innerHTML = ''; // Clear loading message
+        const results = await searchPosts(query, 0.4);
+        postsContainer.innerHTML = "";
 
         if (results.length === 0)
         {
-            postsContainer.innerHTML = '<h1>No posts found.</h1>';
+            postsContainer.innerHTML = "<h1>No posts found.</h1>";
         }
         else
         {
-            results.forEach(post => {
+            results.forEach(post =>
+            {
                 let realPost = new Post(post);
 
                 addLongPostToDiv(postsContainer, realPost);
             });
         }
-    } catch (error)
+    }
+    catch (error)
     {
-        postsContainer.innerHTML = `<p>Error loading posts: ${error.message}</p>`;
+        postsContainer.innerHTML = "<p>Error loading posts: " + error.message + "</p>";
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const searchQuery = document.getElementById('searchQuery');
-    const searchForm = document.getElementById('searchForm');
+document.addEventListener("DOMContentLoaded", () =>
+{
+    const searchQuery = document.getElementById("searchQuery");
+    const searchForm = document.getElementById("searchForm");
 
-    // Populate the search field if "query" is present in the URL
+    // search for posts if there is a query url param
     const urlParams = new URLSearchParams(window.location.search);
-    const query = urlParams.get('query');
-    if (query) {
+    const query = urlParams.get("query");
+    if (query)
+    {
         searchQuery.value = query;
-        // Load posts based on the query
         loadPosts(query);
     }
 
-    // Handle form submission
-    searchForm.addEventListener('submit', (e) => {
+    // when the user searches, reload the page with the query as a url param
+    searchForm.addEventListener("submit", (e) =>
+    {
         e.preventDefault();
         const query = searchQuery.value;
 
-        // Update the URL and reload the page with the new query parameter
-        const newUrl = `${window.location.origin}${window.location.pathname}?query=${encodeURIComponent(query)}`;
+        const newUrl = window.location.origin + window.location.pathname + "?query=" + encodeURIComponent(query);
         window.location.href = newUrl;
     });
 });

@@ -26,6 +26,13 @@ header .tigerButton:nth-child(3)
     justify-self: left;
 }
 
+.headerRight
+{
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+}
+
 .tigerButton
 {
     background-color: #f76902;
@@ -47,18 +54,6 @@ header .tigerButton:nth-child(3)
     scale: 102%;
 }
 
-.tigerButton input
-{
-    background-color: #f7690200;
-    border-color: #00000000;
-}
-
-.tigerButton button
-{
-    background-color: #00000000;
-    border-color: #00000000;
-}
-
 .tigerButton img
 {
     width: 64px;
@@ -66,18 +61,35 @@ header .tigerButton:nth-child(3)
     flex: 1;
 }
 
+/* search */
+.tigerButton input
+{
+    background-color: #f7690200;
+    border-color: #00000000;
+}
+
+/* search */
+.tigerButton button
+{
+    background-color: #00000000;
+    border-color: #00000000;
+}
+
+/* search */
 .tigerButton ::placeholder
 {
     color: white;
     font-weight: 700;
 }
 
+/* when you're on the page that the button leads to */
 .tigerButtonSelected
 {
     background-color: white;
     color: #f76902;
 }
 
+/* for buttons without links */
 .tigerNotWorking
 {
     background-color: gray;
@@ -99,6 +111,7 @@ h1
     font-style: normal;
 }
 
+/* mini posts on home page */
 .miniPostList
 {
     padding: 32px;
@@ -180,6 +193,7 @@ footer .tigerButton
     margin: auto;
 }
 
+/* for new posts and general big posts */
 #newPostFormDiv
 {
     width: 100%;
@@ -207,15 +221,6 @@ footer .tigerButton
     background-color: lightgray;
 }
 
-.ql-toolbar, .ql-container
-{
-    width: 100%;
-    padding-left: auto 8px;
-    margin-left: auto 16px;
-    border-color: darkgray;
-    background-color: lightgray;
-}
-
 #newPostFormDiv p
 {
     width: 100%;
@@ -236,7 +241,7 @@ footer .tigerButton
 ::placeholder
 {
     color: black;
-    opacity: 1; /* Firefox */
+    opacity: 1;
     font-weight: 200;
 }
 
@@ -256,18 +261,31 @@ footer .tigerButton
     display: block;
 }
 
+/* quill rich text editor */
+.ql-toolbar, .ql-container
+{
+    width: 100%;
+    padding-left: auto 8px;
+    margin-left: auto 16px;
+    border-color: darkgray;
+    background-color: lightgray;
+}
+
+/* quill rich text editor popup that i made disappear */
 .ql-hidden, .ql-editing
 {
     display: none;
     opacity: 0%;
 }
 
+/* search results */
 #postResults
 {
     display: flex;
     flex-direction: column;
 }
 
+/* for search results */
 .longPost
 {
     border-style: solid;
@@ -320,13 +338,6 @@ footer .tigerButton
     text-wrap: nowrap;
 }
 
-.headerRight
-{
-    display: flex;
-    flex-direction: row;
-    flex-shrink: 0;
-}
-
 #searchForm
 {
     max-width: 100%;
@@ -343,6 +354,7 @@ footer .tigerButton
     width: 100%;
 }
 
+/* for all posts page */
 #allPosts
 {
     display: flex;
@@ -352,6 +364,7 @@ footer .tigerButton
     justify-content: space-evenly;
 }
 
+/* responsive design */
 @media only screen and (max-width: 1575px)
 {
     footer
@@ -375,6 +388,11 @@ footer .tigerButton
     #newPostFormDiv
     {
         flex-direction: column;
+    }
+
+    #newPostFormDiv input, #quillWrapper
+    {
+        margin: auto;
     }
 
     #newPostLeft

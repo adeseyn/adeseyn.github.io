@@ -8,18 +8,9 @@ const nameText = document.getElementById("nameInput");
 const descText = document.getElementById("descInput");
 const imageLinkText = document.getElementById("imageLink");
 
-function httpGetAsync(url, callback)
-{
-    const xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() {
-        if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
-        callback(xmlHttp.responseText);
-    }
-    xmlHttp.open("GET", url, true); // true for asynchronous
-    xmlHttp.send(null);
-}
+// gets the city the user is from and stores it as a cookie
+// for use in analytics or something
 let city = "";
-
 if (getCookie("city") == null)
 {
     const url = "https://ipgeolocation.abstractapi.com/v1/?api_key=f8be61bcdd004987b559d51cfee43b16&ip_address=2620:8d:8000:1064:6c18:37a1:cb92:fa19";
@@ -31,30 +22,42 @@ if (getCookie("city") == null)
 }
 else city = getCookie("city");
 
-document.addEventListener('DOMContentLoaded', () => {
-    const quill = new Quill('#quill-editor', {
-        theme: 'snow',
-        placeholder: 'Description & Notes',
+document.addEventListener("DOMContentLoaded", () =>
+{
+    // initialize rich text editor for item descriptions
+    const quill = new Quill("#quill-editor",
+    {
+        theme: "snow",
+        placeholder: "Description & Notes",
         modules:
         {
             toolbar:
             [
-                ['bold', 'italic', 'underline'], // Basic text formatting
-                [{ list: 'ordered' }, { list: 'bullet' }], // Lists
+                ["bold", "italic", "underline"],
+                [{ list: "ordered" }, { list: "bullet" }],
             ]
         }
     });
 
-    quill.on('text-change', () => {
-        descText.value = quill.root.innerHTML; // Get the HTML content of the editor
+    // updates the "description" section of the form when the rich presence
+    // is updated by the user
+    // so that the description is submitted correctly
+    quill.on("text-change", () =>
+    {
+        descText.value = quill.root.innerHTML;
     });
 
+    // get previous user inputs from the last session
+    // so that the user doesn"t lose progress when they reload
+    // or close out and reopen
     if (getCookie("name") != null) nameText.value = getCookie("name");
     if (getCookie("price") != null) priceText.value = getCookie("price");
     if (getCookie("image") != null) imageLinkText.value = getCookie("image");
     if (getCookie("desc") != null) quill.root.innerHTML = getCookie("desc");
 
-    imageLinkText.addEventListener('input', (event) =>
+    // set the post"s image to a banana if the link is empty
+    // or to the specified image otherwise
+    imageLinkText.addEventListener("input", (event) =>
     {
         let daInput = event.target.value.trim();
 
@@ -68,16 +71,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    newPostForm.addEventListener("input", (e) => {
+    // save user progress with cookies
+    newPostForm.addEventListener("input", (e) =>
+    {
         setCookie("name", nameText.value, 7);
         setCookie("price", priceText.value, 7);
         setCookie("image", imageLinkText.value, 7);
         setCookie("desc", quill.root.innerHTML, 7);
     });
 
-    newPostForm.addEventListener('submit', (e) => {
+    // when the user submits, upload the post, clear all cookies,
+    // and send them to the home page
+    newPostForm.addEventListener("submit", (e) =>
+    {
         e.preventDefault();
-        console.log("running");
 
         const name = nameText.value.trim();
         let image;
@@ -87,15 +94,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const price = parseFloat(priceText.value);
 
         publishPost(name, image, new Date().getTime(), description, price, -1, city)
-        .then(result => {
-                deleteCookie("name");
-                deleteCookie("price");
-                deleteCookie("image");
-                deleteCookie("desc");
-                window.location.replace("../index.html");
-            }
-        )
-        .catch(error => {
+        .then(() =>
+        {
+            deleteCookie("name");
+            deleteCookie("price");
+            deleteCookie("image");
+            deleteCookie("desc");
+            window.location.replace("../index.html");
+        })
+        .catch(error =>
+        {
             console.error("unable to post");
             console.error(error);
         });

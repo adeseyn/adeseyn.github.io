@@ -1,4 +1,6 @@
-// Set a cookie
+// functions to do with cookies
+
+// set a cookie
 export function setCookie(name, value, daysToLive)
 {
     const date = new Date();
@@ -7,7 +9,7 @@ export function setCookie(name, value, daysToLive)
     document.cookie = name + "=" + value + ";" + expires + ";path=/";
 }
   
-// Get a cookie
+// get a cookie
 export function getCookie(name)
 {
     const cookies = document.cookie.split(';');
@@ -22,7 +24,7 @@ export function getCookie(name)
     return null;
 }
   
-// Delete a cookie
+// delete a cookie
 export function deleteCookie(name)
 {
     setCookie(name, '', -1);

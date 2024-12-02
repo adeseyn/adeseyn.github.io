@@ -1,10 +1,13 @@
 import { getRecentPosts, getRandomPosts } from "../firebase.js";
 import { Post, addMiniPostToDiv } from "../post.js"
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () =>
+{
     const forYouPostDiv = document.getElementById("forYouPosts");
     const newPostsDiv = document.getElementById("newItemsPosts");
 
+    // gets random posts from the database and adds them as mini posts to
+    // the forYouPosts div
     function getYouPosts(postNumber)
     {
         getRandomPosts(postNumber).then(posts => 
@@ -18,6 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // gets new posts from the database and adds them as mini posts to
+    // the newItemsPosts div
+    // also adds a "see all posts" button
     function getNewPosts(postNumber)
     {
         getRecentPosts(postNumber).then(posts => 

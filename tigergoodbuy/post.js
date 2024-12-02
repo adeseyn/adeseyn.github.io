@@ -1,10 +1,11 @@
+// general post object
 export class Post
 {
     postId;
     userId;
     name;
     image;
-    price; //price in DOLLARS
+    price; //price in dollars
     date; //date in number
     desc;
 
@@ -25,16 +26,21 @@ export class Post
     }
 }
 
+// redirect to a url with the url param "id"
 function redirectWithId(url, id)
 {
     window.location.href = url + "?id=" + encodeURIComponent(id);
 }
 
+// creates a square post and adds it to a div
+// consists of an image, name
+// used on home page and all posts page
 export function addMiniPostToDiv(div = HTMLDivElement, post = Post)
 {
     const postDiv = document.createElement("div");
     postDiv.classList = ["miniPost"];
-    postDiv.addEventListener("click", (e) => {
+    postDiv.addEventListener("click", (e) =>
+    {
         redirectWithId("../post/index.html", post.postId);
     })
 
@@ -51,6 +57,9 @@ export function addMiniPostToDiv(div = HTMLDivElement, post = Post)
     div.append(postDiv);
 }
 
+// creates a long post and adds it to a div
+// consists of an image, name, description
+// used on search page
 export function addLongPostToDiv(div = HTMLDivElement, post = Post)
 {
     const postDiv = document.createElement("div");
